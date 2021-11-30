@@ -1,0 +1,2 @@
+from command line:
+./run.sh filename.extension
