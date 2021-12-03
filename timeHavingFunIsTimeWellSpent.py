@@ -273,13 +273,13 @@ def main(argv):
     PARSEINPUT(argv[1])
     #printVertsEdges(directedGraph, 0, 1);
     #print("undirected below:");
-    printVertsEdges(graph, 1, 0)
+    #printVertsEdges(graph, 1, 0)
     #printEdgeKeyWeightValue(edgeKey_WeightValue);
 
     createSortedMinimumAdjacency(graph)
-    printSortedAdjacency(verticeAdjacency)
+    #printSortedAdjacency(verticeAdjacency)
     alg = getSortedAdjacencyLtd(3)
-    printSortedAdjacency(alg)
+    #printSortedAdjacency(alg)
 
     newLeftRightList = []
 
@@ -299,9 +299,9 @@ def main(argv):
             theLowest = 0
             permCounter += 1
             while len(left) + len(right) <= len(alg):
-                ctr += 1
-                if ctr > 20:
-                    break;
+                #ctr += 1
+                #if ctr > 20:
+                #    break;
                 while worstLeft <= worstRight:
                     for ver in verticeAdjacency[left[len(left)-1]]:
                         if not isInEither(left, right, ver[1]):
@@ -314,7 +314,7 @@ def main(argv):
                         break;
                     else:
                         worstLeft = 0
-                    if len(left) + len(right) > len(alg):
+                    if len(left) + len(right) >= len(alg):
                         break;
                 worstRight = 0
                 while worstRight <= worstLeft:
@@ -329,11 +329,13 @@ def main(argv):
                         break;
                     else:
                         worstRight = 0
-                    if len(left) + len(right) > len(alg):
+                    if len(left) + len(right) >= len(alg):
                         break;
                 worstLeft = 0
 
             combined = left + right
+
+            #print(len(alg), ": ", len(left)+len(right))
 
 
             myWt = calculateWeight(combined, 0, 1, 0)
@@ -346,9 +348,9 @@ def main(argv):
             worstLeft = 0
             worstRight = 0
             while len(left) + len(right) <= len(alg):
-                ctr += 1
-                if ctr > 20:
-                    break;
+                #ctr += 1
+                #if ctr > 20:
+                #    break;
                 
                 while worstRight <= worstLeft:
                     for ver in verticeAdjacency[right[0]]:
@@ -392,9 +394,16 @@ def main(argv):
 
             newLeftRightList.append(myWt)
 
+            #print(len(alg), ": ", len(left)+len(right))
+
     newLeftRightList.sort(reverse=True)
     for e in newLeftRightList:
+        #break;
         print(e)
+        #if(len(e[1]) < len(alg)):
+        #    print("not valid length for total graph, e:", len(e), "---alg:", len(alg))
+        #else:
+        #    print("e:", len(e[1]), " > ", len(alg))
     print("how many cycles were made?: ", len(newLeftRightList))
 
 
